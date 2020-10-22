@@ -40,7 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+        'oracle_users' => [
+            'driver'   => 'session',
+            'provider' => 'oracle_users',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -68,7 +71,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
+        ],
+         'oracle_users' => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\OracleUser::class
         ],
 
         // 'users' => [

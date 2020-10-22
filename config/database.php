@@ -58,6 +58,44 @@ return [
             'server_version' => env('DB_PORTAL_SERVER_VERSION', '11g'),
         ],
 
+        'crms' => [
+            'driver' => env('DB_CRMS_CONNECTION'),
+            'host' => env('DB_CRMS_HOST'),
+            'port' => env('DB_CRMS_PORT'),
+            'database' => env('DB_CRMS_DATABASE'),
+            'username' => env('DB_CRMS_USERNAME'),
+            'password' => env('DB_CRMS_PASSWORD'),
+         //   'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        'ipc_central' => [
+            'driver' => env('DB_E5_CONNECTION'),
+            'host' => env('DB_E5_HOST'),
+            'port' => env('DB_E5_PORT'),
+            'database' => env('DB_E5_DATABASE'),
+            'username' => env('DB_E5_USERNAME'),
+            'password' => env('DB_E5_PASSWORD'),
+         //   'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),

@@ -2,6 +2,10 @@
 
 return [
 
+    'system_id' => 16,
+    'hostname' => env('HOSTNAME'),
+    'webapps_url' => env('WEBAPPS_URL'),
+    'app_url' => env('APP_URL'),
     /*
     |--------------------------------------------------------------------------
     | Application Name

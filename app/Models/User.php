@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    protected $connection = 'oracle_portal';
+    protected $connection = 'oracle';
     protected $table = 'ipc_portal.users';
     protected $primaryKey = 'user_id';
     const UPDATED_AT = 'date_updated';

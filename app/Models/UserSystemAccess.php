@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserSystemAccess extends Model
 {
-    protected $connection = 'oracle_portal';
+    protected $connection = 'oracle';
     protected $table = 'ipc_portal.user_system_access';
     protected $primaryKey = 'access_id';
 

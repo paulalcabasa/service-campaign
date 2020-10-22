@@ -44,4 +44,31 @@ class Inquiry extends Model
         $query = DB::select($sql);
         return $query;
     }
+
+    public function get()
+    {
+        $sql = "SELECT inquiry.id,
+                        inquiry.registered_owner,
+                        inquiry.contact_person,
+                        inquiry.contact_number,
+                        inquiry.email_address,
+                        inquiry.cs_no,
+                        traviz.engine_no,
+                        traviz.vin,
+                        dlr.account_name preferred_servicing_dealer,
+                        cust.account_name selling_dealer
+                FROM ipc.ipc_sc_inquiries inquiry
+                    LEFT JOIN ipc.ipc_sc_traviz traviz
+                        ON inquiry.cs_no = traviz.cs_no
+                    LEFT JOIN ipc_portal.dealers dlr
+                        ON dlr.id = inquiry.preferred_servicing_dealer
+                    INNER JOIN ra_customer_trx_all rcta
+                        ON rcta.attribute3 = traviz.cs_no
+                    INNER JOIN ipc_dms.oracle_customers_v cust
+                        ON cust.site_use_id = rcta.bill_to_site_use_id
+                    LEFT JOIN ipc_ar_invoices_with_cm cm
+                        ON rcta.customer_trx_id = cm.orig_trx_id";
+        $query = DB::select($sql);
+        return $query;
+    }
 }

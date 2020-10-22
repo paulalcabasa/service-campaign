@@ -9,7 +9,16 @@ use App\Models\Inquiry;
 
 class InquiryController extends Controller
 {
-   
+
+    public function index()
+    {   
+        $inquiry = new Inquiry;
+        $data = [
+            'inquiries' => $inquiry->get()
+        ];
+        return view('inquiries', $data);
+    }
+
     public function store(Request $request){
        
         $inquiry = new Inquiry;
