@@ -75,7 +75,7 @@ class SendInquiry extends Command
                 ];
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Service Campaign: Isuzu Traviz';
+                $mail->Subject = 'Service Campaign - Isuzu Traviz';
                 $mail->Body    = view('email/inquiry', $data);
 
                 if($mail->send()){
