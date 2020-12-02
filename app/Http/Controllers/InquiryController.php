@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Dealer;
 use App\Models\Traviz;
 use App\Models\Inquiry;
+use Carbon\Carbon;
 
 class InquiryController extends Controller
 {
@@ -13,8 +14,16 @@ class InquiryController extends Controller
     public function index()
     {   
         $inquiry = new Inquiry;
+        $customer_id = session('user')['customer_id'];
+        $inquiries = [];
+        if($customer_id != ""){
+            $inquiries = $inquiry->getByDealer($customer_id);
+        }
+        else {
+            $inquiries = $inquiry->get();
+        }
         $data = [
-            'inquiries' => $inquiry->get()
+            'inquiries' => $inquiries
         ];
         return view('inquiries', $data);
     }
@@ -54,5 +63,30 @@ class InquiryController extends Controller
         $traviz = new Traviz;
         $details = $traviz->getDetails($param);
         return response()->json($details);
+    }
+
+    public function update(Request $request){
+        $inquiry = Inquiry::findOrFail($request->inquiryId);
+        $inquiry->receiving_manner = $request->mannerOfReceive;
+        if($request->mannerOfReceive == "OTHERS"){
+            $inquiry->others = $request->others;
+        }
+        $inquiry->completion_date = $request->completionDate;
+        $inquiry->updated_at = Carbon::now();
+        $inquiry->save();
+
+        // $customer_id = session('user')['customer_id'];
+        // $inquiries = [];
+        // $inquiryData = new Inquiry;
+        // if($customer_id != ""){
+        //     $inquiries = $inquiryData->getByDealer($customer_id);
+        // }
+        // else {
+        //    // $inquiries = $inquiry->get();
+        // }
+
+        return response()->json([
+            'message' => 'Successfully updated.'
+        ]);
     }
 }
