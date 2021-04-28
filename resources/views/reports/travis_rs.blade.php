@@ -9,6 +9,14 @@
             <th width="30">VIN</th>
             <th width="30">Dealer Name</th>
             <th width="30">Delivery Date</th>
+            <th width="30">Production Date</th>
+            <th width="30">Goods Carried</th>
+            <th width="30">Scope of operation</th>
+            <th width="30">Rear body application</th>
+            <th width="30">Mileage per year</th>
+            <th width="30">Road condition</th>
+            <th width="30">Owns competitor CV</th>
+            <th width="30">Payload</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +30,14 @@
             <td>{{ $row->vin }}</td>
             <td>{{ $row->dealer }}</td>
             <td>{{ $row->delivery_date }}</td>
+            <td>{{ $row->production_date }}</td>
+            <td>{{ $row->goods_carried }}</td>
+            <td>{{ $row->scope }}</td>
+            <td>{{ $row->rba }}</td>
+            <td>{{ $row->mileage }}</td>
+            <td>{{ $row->road_condition }}</td>
+            <td>{{ $row->has_competitor_cv }}</td>
+            <td>{{ $row->payload }}</td>
         </tr>
         @endforeach
     </tbody>

@@ -32,7 +32,14 @@ class Report extends Model
                     ,DATE_FORMAT(rdr.delivery_date, '%m/%d/%Y')     AS delivery_date
                     ,c.addr_line_1
                     ,c.addr_line_2
-
+                    ,DATE_FORMAT(v.production_date, '%m/%d/%Y') production_date
+                    ,comm_info.goods_carried
+                    ,comm_info.scope
+                    ,comm_info.rba
+                    ,comm_info.mileage
+                    ,comm_info.road_condition
+                    ,comm_info.has_competitor_cv 
+                    ,comm_info.payload
             /* */
                 FROM t_crm_retail_sale rs JOIN (t_crm_vehicle v JOIN t_crm_vehicle_tran t ON v.db_id = t.db_id
                                                                 JOIN t_crm_customer_vehicle cv ON v.db_id = cv.vehicle_db_id
@@ -47,9 +54,11 @@ class Report extends Model
 
                                     LEFT JOIN t_crm_rdr rdr ON  rs.vehicle_db_id = rdr.vehicle_db_id /* this causes duplicates -> add distinct modifier */
                                     LEFT JOIN t_crm_dealer d ON rs.dealer_id = d.dealer_id
+                                    LEFT JOIN t_crm_vehicle_comm_info comm_info ON comm_info.vehicle_db_id = v.db_id
             /* */
             WHERE v.model LIKE '%TRAV%'
                 AND c.acct_type = 'I'
+
 
             UNION 
 
@@ -75,6 +84,14 @@ class Report extends Model
                     ,DATE_FORMAT(rdr.delivery_date, '%m/%d/%Y')     AS delivery_date
                     ,c.addr_line_1
                     ,c.addr_line_2
+                    ,DATE_FORMAT(v.production_date, '%m/%d/%Y') production_date
+                    ,comm_info.goods_carried
+                    ,comm_info.scope
+                    ,comm_info.rba
+                    ,comm_info.mileage
+                    ,comm_info.road_condition
+                    ,comm_info.has_competitor_cv 
+                    ,comm_info.payload
             /* */
                 FROM t_crm_retail_sale rs JOIN (t_crm_vehicle v JOIN t_crm_vehicle_tran t ON v.db_id = t.db_id
                                                                 JOIN t_crm_customer_vehicle cv ON v.db_id = cv.vehicle_db_id
@@ -89,6 +106,8 @@ class Report extends Model
 
                                     LEFT JOIN t_crm_rdr rdr ON  rs.vehicle_db_id = rdr.vehicle_db_id /* this causes duplicates -> add distinct modifier */
                                     LEFT JOIN t_crm_dealer d ON rs.dealer_id = d.dealer_id
+                                    
+                                    LEFT JOIN t_crm_vehicle_comm_info comm_info ON comm_info.vehicle_db_id = v.db_id
             /* */
             WHERE v.model LIKE '%TRAV%'  
                 AND (c.acct_type = 'C' OR c.acct_type = 'F')";
