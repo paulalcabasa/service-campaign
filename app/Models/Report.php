@@ -133,7 +133,7 @@ class Report extends Model
                        msn.attribute2  vin,
                        msn.attribute3  engine_no,
                        msn.attribute6  key_number,
-                       msn.attribute5 buyoff_date,
+                       to_char(to_date(msn.attribute5,'YYYY/MM/DD HH24:MI:SS'),'MM/DD/YYYY')  buyoff_date,
                        NVL(ato.location, msn.c_attribute29) location,
                        ivp.pullout_type
                 FROM ra_customer_trx_all rcta
