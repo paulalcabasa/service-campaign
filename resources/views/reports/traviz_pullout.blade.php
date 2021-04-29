@@ -8,6 +8,7 @@
             <th width="30">Dealer Name</th>
             <th width="30">Invoice Date</th>
             <th width="30">Pullout Date</th>
+            <th width="30">Buyoff Date</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
             <td>{{ $row->account_name }}</td>
             <td>{{ $row->invoice_date }}</td>
             <td>{{ $row->pullout_date }}</td>
+            <td>{{ $row->buyoff_date }}</td>
         </tr>
         @endforeach
     </tbody>
